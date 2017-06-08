@@ -32,7 +32,7 @@ def elastic_net(X,Y,max_iter=1000,lam=1,a=.9,k=10):
     '''
     if isinstance(lambs, collections.Iterable):
         # Run Grid CV to find optimal lambda:
-        lam = grid_lambdas(lam,X,Y,iters,alpha,k)
+        lam = grid_lambdas(lam,X,Y,max_iter,a,k)
     return lam,randcoorddescent(np.zeros(X.shape[1]), max_iter, X, Y, lam, a)[-1]
     
 def soft_threshhold(c,alphalam):
