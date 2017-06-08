@@ -1,4 +1,7 @@
 '''
+Author: Ian Kirkman (ikirkman@uw.edu)
+Date: 6/7/2017
+
 This module implements the Elastic Net model with random coordinate decent, by iterating
 over the partial minimization problem with respect to \beta_j:
 
