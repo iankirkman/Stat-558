@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import sklearn.preprocessing
 import matplotlib.pyplot as plt
-import elastic_net.py
+import elastic_net
 
 # Load and standardize Hitters data
 hitters = pd.read_csv("https://raw.githubusercontent.com/selva86/datasets/master/Hitters.csv", sep=',',header=0)
