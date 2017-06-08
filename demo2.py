@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 import elastic_net
 
 # Create standardized, simulated data
-X = np.diag(np.random.normal(0,1,100))
+X = np.diag(np.random.uniform(5,10,100))
+X = (X-np.mean(X))/np.std(X)
 Y = np.random.normal(0,1,100)
 
 '''
