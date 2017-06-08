@@ -32,7 +32,7 @@ def elastic_net(X,Y,max_iter=1000,lam=1,a=.9,k=10):
     '''
     if isinstance(lam, collections.Iterable):
         # Run Grid CV to find optimal lambda:
-        lam = grid_lambdas(lam,X,Y,max_iter,a,k)
+        lam = grid_lambdas(lam,X,Y,max_iter,a,k)[0]
     return lam,randcoorddescent(np.zeros(X.shape[1]), max_iter, X, Y, lam, a)[-1]
     
 def soft_threshhold(c,alphalam):
@@ -184,7 +184,7 @@ def kfolds_cv(X,Y,max_iter,lam,a,k):
 def grid_lambdas(lambs,X,Y,max_iter,a,folds):
     '''
     Test grid of lambdas for smallest MSE
-    Returns optimal lambda from grid
+    Returns a (opt_lam,mse_grid) tuple of the optimal lambda and the grid of Mean Squared Errors
 
     Inputs:
         lambs: the lambdas to grid
@@ -194,4 +194,4 @@ def grid_lambdas(lambs,X,Y,max_iter,a,folds):
     for lam in lambs:
         mses[i] = kfolds_cv(X,Y,max_iter,lam,a,folds)
         i += 1
-    return lambs[np.argmin(mses)]
+    return (lambs[np.argmin(mses)],mses)
