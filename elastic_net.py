@@ -8,7 +8,8 @@ The user has the option to use a default of 1, or tune the penalty lambda via k-
 cross validation. (The default number of folds is 10). The alpha scalar of the elastic net
 model has default value 0.9, and should fall within (0,1) if it is overwritten.
 
-The stopping criteria is strictly based on the specified max iterations (default 1000).
+The stopping criteria is strictly based on the specified max iterations (default 1000). Note that
+input data should be standardized.
 '''
 
 import numpy as np
@@ -19,8 +20,8 @@ def elastic_net(X,Y,max_iter=1000,lam=1,a=.9,k=10):
     Run the elastic net model
     
     Input:
-        X: the matrix of predictors as a numpy array
-        Y: the response vector as a numpy array
+        X: the matrix of predictors as a numpy array (standardize data before running)
+        Y: the response vector as a numpy array (standardize data before running)
         max_iter: the number of iterations for the random coordinate descent (stopping criteria)
         lam: the penalty scalar for the elastic net model (can be a list for CV grid)
         a: the alpha scalar for the elastic net model
