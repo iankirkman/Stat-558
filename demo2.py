@@ -3,27 +3,12 @@ Run a demo of my Elastic Net implementation with simple simulated data.
 '''
 
 import numpy as np
-import pandas as pd
-import sklearn.preprocessing
 import matplotlib.pyplot as plt
 import elastic_net
 
-# Load and standardize Hitters data
-hitters = pd.read_csv("https://raw.githubusercontent.com/selva86/datasets/master/Hitters.csv", sep=',',header=0)
-hitters = hitters.dropna()
-
-# Create our X matrix with the predictors and Y vector with the response
-X = hitters.drop('Salary',axis=1)
-Y = hitters.Salary
-
-# Encode the variables League, Division, and Newleague
-X = pd.get_dummies(X, drop_first=True)
-
-# Standardize the data
-scaler = sklearn.preprocessing.StandardScaler()
-scaler.fit(X)
-X = scaler.transform(X)
-Y = np.array(Y-np.mean(Y))/np.std(Y)
+# Create standardized, simulated data
+X = np.diag(np.random.normal(0,1,100))
+Y = np.random.normal(0,1,100)
 
 '''
 In general, you will just want to use the elastic_net function
