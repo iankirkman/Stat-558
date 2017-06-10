@@ -2,8 +2,8 @@
 Compare results to scikit-learn's ElasticNetCV function.
 
 Note that the lambda/alpha parameters are different in sklearn's objective function.
-Scikit alpha_ = Our lambda/2
-Scikit l1_ratio_ = Our alpha
+Scikit alpha_ = lambda * (2-alpha) / 2
+Scikit l1_ratio_ = alpha / (2-alpha)
 '''
 
 import numpy as np
@@ -25,12 +25,12 @@ sk.fit(X,Y)
 print(sk.coef_)
 
 # Use scikit's grid search results to set our parameters
-print(elastic_net(X,Y,lam=2*sk.alpha_,a=sk.l1_ratio_)[1])
+print(elastic_net(X,Y,lam=sk.alpha_*(1+sk.l1_ratio_),a=2*sk.l1_ratio_/(1+sk.l1_ratio_))[1])
 
 # We see that the resuls are similar, but not perfectly matched
 
 # Now let's run our grid search on lambda to see if we find a similar optimal parameter
-print('Sklearn optimal param: %f'%(2*sk.alpha_))
+print('Sklearn optimal param: %f'%(sk.alpha_*(1+sk.l1_ratio_)))
 
-opt_lam = elastic_net(X,Y,lam=[.01*i for i in range(1,50)],a=sk.l1_ratio_)[0]
+opt_lam = elastic_net(X,Y,lam=[.01*i for i in range(1,50)],a=2*sk.l1_ratio_/(1+sk.l1_ratio_))[0]
 print('Our optimal param: %f'%opt_lam)
