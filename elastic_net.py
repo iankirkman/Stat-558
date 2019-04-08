@@ -2,7 +2,7 @@
 Author: Ian Kirkman (ikirkman@uw.edu)
 Date: 6/7/2017
 
-This module implements the Elastic Net model with random coordinate decent, by iterating
+This module implements the Elastic Net model with random coordinate descent, by iterating
 over the partial minimization problem with respect to \beta_j:
 
 min_{\beta_j} \frac{1}{n} ||Y-X\beta||^2_2 + \lambda(1-\alpha)||\beta||^2_2 + \alpha \lambda ||\beta||_1
